@@ -1,0 +1,39 @@
+<div class="form_wrapper">
+  <div class="form_container">
+    <div class="title_container">
+      <h2>Template Form</h2>
+    </div>
+    <div class="row clearfix">
+      <div class="">
+        <form  #loginForm="ngForm" (ngSubmit)="Submit(loginForm.value)" >
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <input type="email" id="email" name="email" placeholder="Email" #email="ngModel" autocomplete="off" required ngModel />
+            <span  *ngIf="email.invalid" style="width: 100%; justify-content: center; display: flex; margin-top: 40px; color: red;">
+              Please Enter Valid email!
+            </span>
+          </div>
+          <!-- invalid and touched using template form
+           using minlength -->
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+            <input minlength="8" type="password" name="password" placeholder="Password" required #password="ngModel"  ngModel />
+            <span  *ngIf="password.invalid && password.touched" pattern="(?=.\d)(?=.\W)(?=.[a-z])(?=.[A-Z]).{8,}" style="width: 100%; justify-content: center; display: flex; margin-top: 40px; color: red;">
+              Please Enter Valid Firstname!
+            </span>
+          </div>
+          
+          <!-- ng invalid use template form -->
+              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <input   minlength="6" type="text" id="name" name="name"  #name="ngModel" ngModel  required/>
+                <span *ngIf="name.errors " style="width: 100%; justify-content: center; display: flex; margin-top: 40px; color: red;">
+                  Username must be at least 6 characters
+                </span>
+              
+           
+          </div>
+          <!-- disabled -->
+          <input [disabled]="loginForm.invalid" class="button" type="submit" value="Register" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
